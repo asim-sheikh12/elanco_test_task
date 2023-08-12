@@ -39,7 +39,7 @@ function Row(props: { row: ReturnType<typeof createData>; page: string }) {
         style={{ cursor: 'pointer' }}
       >
         <TableCell
-          sx={{ fontWeight: 600, fontSize: 15 }}
+          sx={{ fontWeight: 600 }}
           component="th"
           scope="row"
           align="center"
@@ -48,14 +48,14 @@ function Row(props: { row: ReturnType<typeof createData>; page: string }) {
           {row.id}
         </TableCell>
         <TableCell
-          sx={{ fontWeight: 600, fontSize: 15 }}
+          sx={{ fontWeight: 600 }}
           style={{ minWidth: 300 }}
           align="left"
         >
           {capitalize(row.name)}
         </TableCell>
         <TableCell
-          sx={{ fontWeight: 600, fontSize: 15 }}
+          sx={{ fontWeight: 600 }}
           align="left"
           style={{ minWidth: 100 }}
         >
@@ -114,7 +114,7 @@ export const CustomTable = ({
       <TableContainer component={Paper}>
         <Table
           style={{ minHeight: '80vh', minWidth: '100%' }}
-          size="medium"
+          size="small"
           aria-label="a dense table"
         >
           <TableHead>
@@ -122,7 +122,7 @@ export const CustomTable = ({
               <TableCell>
                 <Box>
                   <TextField
-                    sx={{ background: 'white' }}
+                    sx={{ background: 'white', marginY: 0.5 }}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       handleSearch(e.target.value)
                     }
