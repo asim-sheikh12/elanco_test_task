@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 
 import CssBaseline from '@mui/material/CssBaseline';
-import { Header, Sidebar } from '../../layouts';
+import { Header, Sidebar } from '../components';
 
 interface IProps {
   children: React.ReactNode;

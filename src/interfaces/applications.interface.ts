@@ -2,6 +2,7 @@ export interface IApplication {
   names: string[];
 }
 export interface IApplicationDetails {
+  id: number;
   ConsumedQuantity: string;
   Cost: string;
   Date: string;

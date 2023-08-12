@@ -2,6 +2,8 @@
 import type { IEndpointProvider, IMethod } from '../interfaces';
 
 import { ApiVersions, HttpMethods } from '../constants';
+import { store } from '../store';
+import { isLoading } from '../store/app';
 
 export const queryOf = (params: Record<string, string> = {}): string => {
   return new URLSearchParams(params).toString();
@@ -50,11 +52,14 @@ const callApi = async <T, K>(
   ) {
     options.body = JSON.stringify(payload ?? {});
   }
-
+  store.dispatch(isLoading());
   const response: Response = await fetch(api, options);
   if (!response?.ok) {
+    store.dispatch(isLoading());
     throw new Error(response?.statusText);
   }
+  store.dispatch(isLoading());
+
   return response.json();
 };
 

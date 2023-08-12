@@ -1,12 +1,16 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getApplicationDetails } from '../../services';
-import { GridColDef } from '@mui/x-data-grid';
 import { IApplicationDetails } from '../../interfaces';
-import { CustomDetailTable } from '../../layouts';
-const ApplicationDetails = () => {
+import { CustomDetailTable } from '../../components';
+import { capitalize } from '../../shared';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import { columns } from '../../constants';
+
+export const ApplicationDetails = () => {
   const { name } = useParams();
+  const navigate = useNavigate();
   const [data, setData] = useState<IApplicationDetails[]>([]);
   const fetchApplicationDetails = async () => {
     const result = await getApplicationDetails(name!);
@@ -15,65 +19,27 @@ const ApplicationDetails = () => {
   useEffect(() => {
     fetchApplicationDetails();
   }, [name]);
-  const columns: GridColDef[] = [
-    {
-      field: 'ConsumedQuantity',
-      headerName: 'Consumed \n Quantity',
-      width: 150,
-    },
-    { field: 'Cost', headerName: 'Cost', width: 110 },
-    {
-      field: 'Date',
-      headerName: 'Date',
-      type: 'number',
-      width: 120,
-      sortable: true,
-    },
-    {
-      field: 'InstanceId',
-      headerName: 'Instance Id',
-      sortable: true,
-      width: 180,
-    },
-    {
-      field: 'MeterCategory',
-      headerName: 'Meter Category',
-      sortable: true,
-      width: 130,
-    },
-    {
-      field: 'ResourceGroup',
-      headerName: 'Resource Group',
-      sortable: true,
-      width: 160,
-    },
-    {
-      field: 'ResourceLocation',
-      headerName: 'Resource Location',
-      sortable: true,
-      width: 160,
-    },
 
-    {
-      field: 'UnitOfMeasure',
-      headerName: 'Unit Of Measure',
-      sortable: true,
-      width: 160,
-    },
-    {
-      field: 'Location',
-      headerName: 'Location',
-      sortable: true,
-      width: 110,
-    },
-    {
-      field: 'ServiceName',
-      headerName: 'Service Name',
-      sortable: true,
-      width: 120,
-    },
-  ];
-  return <CustomDetailTable data={data} columns={columns} />;
+  return (
+    <div>
+      <h3
+        style={{
+          margin: 30,
+          display: 'flex',
+          alignItems: 'center',
+          color: '#605C7B',
+          fontWeight: 600,
+        }}
+      >
+        <KeyboardBackspaceIcon
+          sx={{ margin: 1, cursor: 'pointer' }}
+          onClick={() => navigate(-1)}
+        />
+        {`Applications > ${capitalize(name)} Details`}
+      </h3>
+      <div style={{ margin: 30 }}>
+        <CustomDetailTable data={data} columns={columns} />
+      </div>
+    </div>
+  );
 };
-
-export default ApplicationDetails;

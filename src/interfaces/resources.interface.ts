@@ -2,6 +2,7 @@ export interface IResource {
   names: string[];
 }
 export interface IResourceDetails {
+  id: number;
   ConsumedQuantity: string;
   Cost: string;
   Date: string;

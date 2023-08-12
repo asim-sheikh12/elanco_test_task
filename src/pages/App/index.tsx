@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Router } from '../../routes';
 import styles from './App.module.scss';
 
-export default function App() {
+export const App = () => {
   return (
     <BrowserRouter>
       <div className={styles.App}>
@@ -11,4 +11,4 @@ export default function App() {
       </div>
     </BrowserRouter>
   );
-}
+};

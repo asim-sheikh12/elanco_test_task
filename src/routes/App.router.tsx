@@ -1,11 +1,15 @@
 import { useRoutes } from 'react-router-dom';
 
-import { Applications } from '../pages/Applications';
-import ApplicationDetails from '../pages/ApplicationDetails';
-import { Resources } from '../pages/Resources';
-import ResourceDetails from '../pages/ResourceDetails';
-import { DashboardLayout } from '../pages/Layout/DashboardLayout';
 import { URL } from '../constants';
+import { BackDrop } from '../components';
+import {
+  ApplicationDetails,
+  Applications,
+  ResourceDetails,
+  Resources,
+} from '../pages';
+
+import { DashboardLayout } from '../layouts';
 
 export default function Router() {
   const element = useRoutes([
@@ -27,8 +31,18 @@ export default function Router() {
     },
   ]);
   return (
-    <DashboardLayout>
-      <div style={{ marginTop: 65 }}>{element}</div>
-    </DashboardLayout>
+    <>
+      <BackDrop />
+      <DashboardLayout>
+        <div
+          style={{
+            marginTop: 70,
+            width: '100%',
+          }}
+        >
+          {element}
+        </div>
+      </DashboardLayout>
+    </>
   );
 }
