@@ -113,7 +113,7 @@ export const CustomTable = ({
     <div style={{ padding: '1% 20%' }}>
       <TableContainer component={Paper}>
         <Table
-          style={{ minHeight: '80vh', minWidth: '100%' }}
+          style={{ height: '100%', minWidth: '100%' }}
           size="small"
           aria-label="a dense table"
         >
